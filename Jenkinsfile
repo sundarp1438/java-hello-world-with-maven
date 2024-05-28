@@ -15,7 +15,7 @@ pipeline{
         }
         stage('Checkout from Git'){
             steps{
-                git branch: 'master', url: 'https://github.com/sundarp1438/MavenProject.git'
+                git branch: 'master', url: 'https://github.com/sundarp1438/java-hello-world-with-maven.git'
             }
         }
       stage("Build Application"){
