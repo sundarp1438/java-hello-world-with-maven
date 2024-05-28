@@ -30,15 +30,15 @@ pipeline{
                  sh "mvn test"
            }
        }
-        stage("Sonarqube Analysis"){
-            steps{
-                withSonarQubeEnv('sonar-server') {
-                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Maven-App \
-                    -Dsonar.projectKey=Maven-App \
-                    '''
-                }
-            }
-        }
+        stage("SonarQube Analysis"){
+           steps {
+	           script {
+		        withSonarQubeEnv(credentialsId: 'sonar-token') { 
+                        sh "mvn sonar:sonar"
+		        }
+	           }	
+           }
+       }
         stage("Quality Gate"){
            steps {
                 script {
